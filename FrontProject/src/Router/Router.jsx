@@ -27,7 +27,9 @@ import Contact from "../Pages/InnerPage/Contact";
 import ErrorPage from "../Shared/ErrorPage/ErrorPage";
 import Register from "../BackComponents/User/Action/Register";
 import Login from "../BackComponents/User/Action/Login";
-import HomeBack from "../BackComponents/HomeBackUser/HomeBack";
+import HomeBack from "../BackComponents/BackUser/HomeBack";
+import HomeBackAmin from '../BackComponents/BackAmin/HomeBackAmin'
+
 
 const UserContext = createContext();
 
@@ -73,6 +75,8 @@ const AppRouter = () => (
         <Route index element={<Home1 />} />
         <Route path="register" element={<Register />} />
         <Route path="back" element={<HomeBack />} />
+        <Route path="back-amin" element={<HomeBackAmin />} />
+
         <Route path="login" element={<Login />} />
         <Route path="about" element={<About />} />
         <Route path="room" element={<Room />} />

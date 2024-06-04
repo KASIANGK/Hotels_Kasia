@@ -87,36 +87,64 @@ def get_user(request):
 
 
 
-
-
-# VIEW CONNEXION
-
 @api_view(["POST"])
 def connexion(request):
     data = json.loads(request.body)
     username = data.get('username')
     password = data.get('password')
-    print('try autenticate')
     user = authenticate(request, username=username, password=password)
 
-    print('user is null ?')
     if user is None:
-        print('yes')
         return JsonResponse({
             "status": "fail_connexion",
-            "message": "informations is not valid"
+            "message": "Informations are not valid"
         })
     else:
-        print('no')
         login(request, user)
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
+        
+        if user.role_id == 2: 
+            redirect_url = '/back-amin'
+        else:
+            redirect_url = '/back'
+        
         return JsonResponse({
             "status": "success",
-            "message": "connecion valid",
+            "message": "Connexion valid",
             "access_token" : access_token,
-            "refresh" : str(refresh)
+            "redirect_url": redirect_url
         })
+
+
+# VIEW CONNEXION
+
+# @api_view(["POST"])
+# def connexion(request):
+#     data = json.loads(request.body)
+#     username = data.get('username')
+#     password = data.get('password')
+#     print('try autenticate')
+#     user = authenticate(request, username=username, password=password)
+
+#     print('user is null ?')
+#     if user is None:
+#         print('yes')
+#         return JsonResponse({
+#             "status": "fail_connexion",
+#             "message": "informations is not valid"
+#         })
+#     else:
+#         print('no')
+#         login(request, user)
+#         refresh = RefreshToken.for_user(user)
+#         access_token = str(refresh.access_token)
+#         return JsonResponse({
+#             "status": "success",
+#             "message": "connecion valid",
+#             "access_token" : access_token,
+#             "refresh" : str(refresh)
+#         })
     
 
 
@@ -125,9 +153,12 @@ def connexion(request):
 @api_view(["POST"])
 def deconnexion(request):
     logout(request)
+    redirect_url = '/'
     return JsonResponse({
             "status": "success",
             "message": "logout success",
+            "redirect_url": redirect_url
+
         }) 
 
    

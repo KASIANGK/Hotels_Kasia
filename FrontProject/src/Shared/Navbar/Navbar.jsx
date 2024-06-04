@@ -6,10 +6,12 @@ import { BiChevronDown, BiSun } from "react-icons/bi";
 import { IoMoonSharp } from "react-icons/io5";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../Router/Router"; 
-
+import { useNavigate } from 'react-router-dom'; 
 
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   // modal openar
   const [isOpen, setIsOpen] = useState(false);
   // dark mode toggle bar
@@ -24,6 +26,12 @@ const Navbar = () => {
 
 
   const { userData, setUserData, logout } = useContext(UserContext);
+
+
+  const logSessionOut = () => {
+    logout(); // Appel de la fonction de déconnexion
+    navigate('/'); // Redirection vers '/'
+  };
 
 
   const toggleNavbar = () => {
@@ -76,7 +84,7 @@ const Navbar = () => {
             <div className="flex items-center">
             {userData ? (
                 <button
-                  onClick={logout}
+                  onClick={logSessionOut}
                   className="mr-3 bg-transparent border border-lightBlack text-lightBlack dark:text-white dark:border-white px-4 py-2 rounded"
                 >
                   Logout
