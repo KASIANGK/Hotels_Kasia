@@ -1,0 +1,166 @@
+.register-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f4f6; 
+}
+
+.register {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.register h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333; 
+}
+.avatar-input {
+  position: relative;
+  display: flex;
+  width: 250px;
+}
+.avatar-input input[type="text"] {
+  cursor: pointer;
+}
+.register input[type="text"],
+.register input[type="password"],
+.register input[type="email"],
+.register input[type="number"],
+.register input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  font-size: 16px;
+}
+
+.register input[type="text"]:focus,
+.register input[type="password"]:focus,
+.register input[type="email"]:focus,
+.register input[type="number"]:focus,
+.register input[type="text"]:focus {
+  outline: none;
+  border-color: #c19c67; 
+}
+
+.register .avatar-input {
+  position: relative;
+}
+
+.register .avatar-input input[type="text"] {
+  cursor: pointer;
+}
+
+.register .avatar-input .carousel {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 999;
+  display: none;
+}
+
+.register .avatar-input .carousel.active {
+  display: block;
+}
+
+.register .avatar-input .carousel__item {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.register .avatar-input .carousel__item img {
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50%;
+}
+
+.register .error {
+  color: red; 
+  margin-top: 10px;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #c19c67; 
+  border: none;
+  border-radius: 5px;
+  color: white; 
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+  background-color: #a67e4c; 
+}
+
+
+
+
+/* CAROUSEL HORIZONTAL */
+.carousel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #c8cdd2;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 999;
+  max-height: 0; /* Initialisez à zéro */
+  overflow-y: auto;
+  transition: max-height 0.7s ease;
+  display: flex;
+  align-items: center;
+  flex-direction: row; /* Changez la direction en ligne */
+  flex-wrap: nowrap; /* Permettre le défilement horizontal */
+  justify-content: flex-start; /* Aligner les éléments à gauche */
+}
+
+.carousel.active {
+  max-height: 200px; /* Changez la hauteur maximale pour afficher le carousel */
+}
+
+.carousel__item {
+  flex: 0 0 150px; /* Fixez la largeur de chaque élément */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel__item:hover {
+  background-color: #f0f0f0;
+}
+
+.carousel__item-head {
+  border-radius: 50%;
+  background-color: #d7f7fc;
+  width: 150px; /* Taille des images */
+  height: 150px; /* Taille des images */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px; /* Marge à droite de chaque élément */
+}
+
+.carousel__item-head img {
+  max-width: 100%; /* Ajuster la taille de l'image pour s'adapter au conteneur */
+  max-height: 100%; /* Ajuster la taille de l'image pour s'adapter au conteneur */
+}
