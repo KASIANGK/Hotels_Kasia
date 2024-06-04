@@ -32,7 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
         if instance.avatar is not None and instance.avatar.image is not None:
             rep['avatar'] = {
                 'id': instance.avatar.id,
-                'name': instance.avatar.name,
+                'nom': instance.avatar.nom,
                 'image': instance.avatar.image.url  # instance.avatar.image.url
             }
         return rep

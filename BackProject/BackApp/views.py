@@ -62,13 +62,7 @@ def register(request):
         "message": 'Account successfully created',
     })
 
-    # mail_context = render_to_string("mailTemplate.html", {"username": username})
-    # send_mail("new account", "", DEFAULT_BACK_EMAIL, [email], html_message=mail_context)
 
-    return JsonResponse({
-        "status": 'success',
-        "message": 'Account successfully created',
-    })
 
 
 
@@ -95,6 +89,48 @@ def get_user(request):
 
 
 
+# VIEW CONNEXION
+
+@api_view(["POST"])
+def connexion(request):
+    data = json.loads(request.body)
+    username = data.get('username')
+    password = data.get('password')
+    print('try autenticate')
+    user = authenticate(request, username=username, password=password)
+
+    print('user is null ?')
+    if user is None:
+        print('yes')
+        return JsonResponse({
+            "status": "fail_connexion",
+            "message": "informations is not valid"
+        })
+    else:
+        print('no')
+        login(request, user)
+        refresh = RefreshToken.for_user(user)
+        access_token = str(refresh.access_token)
+        return JsonResponse({
+            "status": "success",
+            "message": "connecion valid",
+            "access_token" : access_token,
+            "refresh" : str(refresh)
+        })
+    
+
+
+ # VIEW DECONNEXION
+
+@api_view(["POST"])
+def deconnexion(request):
+    logout(request)
+    return JsonResponse({
+            "status": "success",
+            "message": "logout success",
+        }) 
+
+   
 
 # VIEW AVATARS
 @api_view(["GET"])
@@ -111,13 +147,7 @@ def avatars_list(request):
     return JsonResponse(avatars_data, safe=False)
 
 
-# @api_view(['POST'])
-# def create_avatar(request):
-#     serializer = AvatarUserSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=201)
-#     return Response(serializer.errors, status=400)
+
 
 
 @api_view(['POST'])

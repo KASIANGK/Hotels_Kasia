@@ -4,7 +4,10 @@ import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { BiChevronDown, BiSun } from "react-icons/bi";
 import { IoMoonSharp } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../Router/Router"; 
+
+
 
 const Navbar = () => {
   // modal openar
@@ -18,6 +21,10 @@ const Navbar = () => {
   // background color add and remover
   const navbarBgColor =
     scrollPosition > 100 ? "lg:bg-lightBlack" : "lg:bg-transparent";
+
+
+  const { userData, setUserData, logout } = useContext(UserContext);
+
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -67,11 +74,22 @@ const Navbar = () => {
 
             {/* toggle bar and dark and light mode. */}
             <div className="flex items-center">
-              <Link to="/login">
-                <button className="mr-3 bg-transparent border border-lightBlack text-lightBlack dark:text-white dark:border-white px-4 py-2 rounded">
-                  Log In
+            {userData ? (
+                <button
+                  onClick={logout}
+                  className="mr-3 bg-transparent border border-lightBlack text-lightBlack dark:text-white dark:border-white px-4 py-2 rounded"
+                >
+                  Logout
                 </button>
-              </Link>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <button className="mr-3 bg-transparent border border-lightBlack text-lightBlack dark:text-white dark:border-white px-4 py-2 rounded">
+                      Log In
+                    </button>
+                  </Link>
+                </>
+              )}
               <Link to="/register">
                 <button className="mr-3 bg-transparent border border-lightBlack text-lightBlack dark:text-white dark:border-white px-4 py-2 rounded">
                   Register
