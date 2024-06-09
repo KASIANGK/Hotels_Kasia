@@ -9,7 +9,8 @@ import {
 import { FaFacebookF, FaLinkedinIn, FaPinterestP } from "react-icons/fa6";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import "../../Components4/Testimonial/testimonials.css";
+import "../../Components/Testimonial/testimonials.css"
+// import "../../Components4/Testimonial/testimonials.css";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { Link } from "react-router-dom";

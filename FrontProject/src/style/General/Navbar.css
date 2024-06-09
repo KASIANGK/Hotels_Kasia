@@ -1,0 +1,45 @@
+.nav-a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0);
+  color: rgba(255, 255, 255, 1);
+}
+
+.btn-secondary:hover,
+.btn-nav:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0);
+  color: rgba(255, 255, 255, 1);
+}
+.btn-nav {
+  color: white;
+  border: 1px solid white;
+}
+.btn-nav-register {
+  border: none
+}
+
+.navbar-og {
+  background-color: rgb(193, 157, 104);
+}
+@media (min-width: 1000px) {
+    .navbar-og {
+      flex-direction: row;
+      width: 100vw;
+      gap: 1%;
+      left: -7%;
+    }
+    .navbar-tout .btn-secondary {
+        margin-right: 20px; 
+      }
+  }
+  @media (min-width: 1300px) {
+    .navbar-og {
+      flex-direction: row;
+      width: 100vw;
+      gap: 1%;
+      left: 0;
+    }
+    .navbar-tout .btn-secondary {
+        margin-right: 20px; 
+      }
+  }

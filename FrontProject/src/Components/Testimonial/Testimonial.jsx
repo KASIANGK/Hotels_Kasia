@@ -1,8 +1,8 @@
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
-import "../../Components4/Testimonial/testimonials.css";
 import "keen-slider/keen-slider.min.css";
+import "../Testimonial/testimonials.css"
 
 const Testimonial = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

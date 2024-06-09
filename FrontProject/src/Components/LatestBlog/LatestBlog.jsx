@@ -1,7 +1,7 @@
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useKeenSlider } from "keen-slider/react";
-import "../../Components4/Testimonial/testimonials.css";
+import "../../Components/Testimonial/testimonials.css"
 import "keen-slider/keen-slider.min.css";
 
 const LatestBlog = () => {

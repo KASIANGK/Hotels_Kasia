@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f3f4f6; 
+  background-color: #6d593b; 
 }
 
 .register {
@@ -63,9 +63,9 @@
 }
 
 .register-btn {
-  width: 100%;
+  width: 250px;
   padding: 15px;
-  background-color: #c19c67; 
+  background-color: #6d593b;
   border: none;
   border-radius: 5px;
   color: white; 
@@ -76,8 +76,9 @@
 }
 
 .register-btn:hover {
-  background-color: #a67e4c; 
+  background-color: #c19c67; 
 }
+
 
 
 
@@ -106,7 +107,7 @@
 }
 
 .carousel__item {
-  flex: 0 0 150px; /* Fixez la largeur de chaque élément */
+  flex: 0 0 150px; /* pour fixer la largeur de chaque élément */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,15 +123,15 @@
 .carousel__item-head {
   border-radius: 50%;
   background-color: #d7f7fc;
-  width: 150px; /* Taille des images */
-  height: 150px; /* Taille des images */
+  width: 150px; 
+  height: 150px; 
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 2px; /* Marge à droite de chaque élément */
+  margin-right: 2px; 
 }
 
 .carousel__item-head img {
-  max-width: 100%; /* Ajuster la taille de l'image pour s'adapter au conteneur */
-  max-height: 100%; /* Ajuster la taille de l'image pour s'adapter au conteneur */
+  max-width: 100%; 
+  max-height: 100%; 
 }

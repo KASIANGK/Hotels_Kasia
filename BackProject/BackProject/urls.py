@@ -25,19 +25,39 @@ urlpatterns = [
     path('register/', views.register),
     path('connexion/', views.connexion),
     path('logout/', views.deconnexion),
-    # path('users/all/', views.all_users),
     path('avatars/', views.avatars_list),
     path('create-avatar/', views.create_avatar),
 
-    # path('dashboard/', views.dashboard),
-    # path('user-update/<int:user_id>/', views.update_user),
-    # path('images/', views.images_list),
-    # path('categories/', views.categories_list),
-    # path('create-images/', views.create_image),
-    # path('send-email/', views.send_email),
-    # path('mail-content/', views.mail_content),
+
+    path('hostel/', views.get_hostels),
+    path('hostels/<int:id>/', views.get_hostel_details),
+    path('hostel-images/', views.hostel_image_list),
+    path('hostel-images/<int:pk>/', views.hostel_image_detail),
+    path('hostels/', views.hostels_list),
+    path('create-hostel/', views.create_hostel),
+    path('update-hostel/<int:pk>/', views.update_hostel),
+
 
     path('get_user/', views.get_user),
+
+    path('hero-slides/', views.get_hero_slides),
+    path('hero-slides/', views.create_hero_slide),
+    path('hero-slides/<int:pk>/', views.hero_slide_detail), 
+    path('hero-slides/update/<int:pk>/', views.update_hero_slide), 
+    path('hero-slides/delete/<int:pk>/', views.delete_hero_slide), 
+    path('section-manager/', views.get_section_manager),
+
+
+    path('room-section/', views.get_room_section),
+
+    path('rooms/', views.get_chambres, name='get_chambres'),
+    path('rooms-images/', views.get_chambre_images, name='get_chambre_images'),
+
+
+
+
+    path('testimonials/', views.get_testimonials),
+
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

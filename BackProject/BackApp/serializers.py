@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import AvatarUser, Role, User, ChambreImage, Chambre, HostelImage, Service, Hostel, Testimonial, Publication, Question, Reservation, HomeBanner
+from .models import *
 
 class AvatarUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,46 +36,28 @@ class UserSerializer(serializers.ModelSerializer):
                 'image': instance.avatar.image.url  # instance.avatar.image.url
             }
         return rep
-        # if instance.avatar is not None and instance.avatar.image is not None:
-        #     rep['avatar_image_url'] = instance.avatar.image.url
-        # return rep
 
-
-    # def create(self, validated_data):
-    #     user = User.objects.create_user(
-    #         username=validated_data['username'],
-    #         email=validated_data['email'],
-    #         password=validated_data['password'],
-    #         first_name=validated_data.get('first_name', ''),
-    #         last_name=validated_data.get('last_name', ''),
-    #         carte_banque=validated_data.get('carte_banque', ''),
-    #         role=validated_data['role'],
-    #         mail=validated_data.get('mail', ''),
-    #         nom=validated_data.get('nom', ''),
-    #         prenom=validated_data.get('prenom', ''),
-    #         adresse_mail=validated_data['adresse_mail'],
-    #         numero_tel=validated_data.get('numero_tel', ''),
-    #         avatar=validated_data['avatar']
-    #     )
-    #     return user
 
 class ChambreImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChambreImage
-        fields = ['id', 'image']
+        fields = "__all__"
+        extra_kwargs = {
+            'image': {'required': False}  
+        }
 
 class ChambreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chambre
-        fields = [
-            'id', 'nom', 'image', 'rating', 'prix', 'promotion', 'disponibilite',
-            'nombre_lits', 'm2', 'category'
-        ]
+        fields = '__all__'
 
 class HostelImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = HostelImage
         fields = ['id', 'image']
+        extra_kwargs = {
+            'image': {'required': False}  
+        }
 
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -89,6 +71,11 @@ class HostelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hostel
         fields = '__all__'
+        extra_kwargs = {
+            'rating': {'required': False},
+            'nbre_chambres': {'required': False}
+        }
+
 
     # def create(self, validated_data):
     #     chambres_data = validated_data.pop('chambres')
@@ -120,7 +107,32 @@ class ReservationSerializer(serializers.ModelSerializer):
         model = Reservation
         fields = '__all__'
 
-class HomeBannerSerializer(serializers.ModelSerializer):
+# class HomeBannerSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = HomeBanner
+#         fields = '__all__'
+class HeroSlideSerializer(serializers.ModelSerializer):
+    hostel = HostelSerializer()
+    hostel_image = HostelImageSerializer()
+
     class Meta:
-        model = HomeBanner
+        model = HeroSlide
+        fields = '__all__'
+        extra_kwargs = {
+            'image': {'required': False},
+            'rating': {'required': False},
+            'nbre_chambres': {'required': False}
+        }
+
+
+
+class SectionManagerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SectionManager
+        fields = '__all__'
+
+
+class RoomSectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoomSection
         fields = '__all__'

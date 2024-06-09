@@ -1,0 +1,22 @@
+.rooms-slider {
+    height: auto;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.rooms-cards {
+    height: 200px;
+}
+.rooms-slider-bis {
+    display: flex;
+    width: 100%;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: wrap;
+}
+
+.rooms-slider-card {
+    width: 95%;
+}

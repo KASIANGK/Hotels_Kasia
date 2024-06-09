@@ -1,0 +1,15 @@
+.back-room-section-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    flex-direction: column;
+    height: 700px;
+}
+.back-rooms-section-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    flex-direction: column;
+}

@@ -1,0 +1,246 @@
+.form-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1200px;
+    background-color: #6d593b; 
+  }
+  
+  .form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    width: 70%;
+    /* margin-top: 10%; */
+  }
+  
+  .form h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333; 
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; 
+  }
+  
+  .form input[type="text"],
+  .form input[type="number"],
+  .form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px;
+  }
+  
+  .form input[type="text"]:focus,
+  .form input[type="number"]:focus,
+  .form select:focus {
+    outline: none;
+    border-color: #c19c67; 
+  }
+  
+  .form .form-btn {
+    padding: 15px;
+    background-color: #6d593b;
+    border: none;
+    border-radius: 5px;
+    color: white; 
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 3%;
+    margin-right: 2%;
+  }
+  
+  .form .form-btn:hover {
+    background-color: #c19c67; 
+  }
+  
+  .form-carousel {
+    position: relative;
+    width: 100%;
+    background-color: #c8cdd2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 0.7s ease;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  
+  .form-carousel.active {
+    max-height: 200px;
+  }
+  
+  .form-carousel__item {
+    flex: 0 0 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-carousel__item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .form-carousel__item-head {
+    border-radius: 50%;
+    background-color: #d7f7fc;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2px;
+  }
+  
+  .form-carousel__item-head img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+
+
+
+
+
+/* .form-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #6d593b; 
+  }
+  
+  .form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    width: 60%;
+  }
+  
+  .form h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333; 
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; 
+  }
+  
+  .form input[type="text"],
+  .form input[type="number"],
+  .form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px;
+  }
+  
+  .form input[type="text"]:focus,
+  .form input[type="number"]:focus,
+  .form select:focus {
+    outline: none;
+    border-color: #c19c67; 
+  }
+  
+  .form .form-btn {
+    padding: 15px;
+    background-color: #6d593b;
+    border: none;
+    border-radius: 5px;
+    color: white; 
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 3%;
+    margin-right: 2%;
+  }
+  
+  .form .form-btn:hover {
+    background-color: #c19c67; 
+  }
+  
+  /* CAROUSEL HORIZONTAL */
+  /* .form-carousel {
+    position: relative;
+    width: 100%;
+    background-color: #c8cdd2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 999;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height 0.7s ease;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  
+  .form-carousel.active {
+    max-height: 200px;
+  }
+  
+  .form-carousel__item {
+    flex: 0 0 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-carousel__item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .form-carousel__item-head {
+    border-radius: 50%;
+    background-color: #d7f7fc;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2px;
+  }
+  
+  .form-carousel__item-head img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+   */
+
+

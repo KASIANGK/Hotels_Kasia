@@ -1,30 +1,30 @@
-import { Outlet } from "react-router-dom";
-import ScrollToTop from "../ScrollToTop";
-import Navbar from "../Shared/Navbar/Navbar";
-import Footer5 from "../Shared/Footer/Footer5";
-import GoToTop from "../Shared/GoToTop";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import HelmetChanger from "../Shared/Helmet/Helmet";
+// import { Outlet } from "react-router-dom";
+// import ScrollToTop from "../ScrollToTop";
+// import Navbar from "../Shared/Navbar/Navbar";
+// import Footer5 from "../Shared/Footer/Footer5";
+// import GoToTop from "../Shared/GoToTop";
+// import { useEffect } from "react";
+// import AOS from "aos";
+// import "aos/dist/aos.css";
+// import HelmetChanger from "../Shared/Helmet/Helmet";
 
-const Main5 = () => {
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
-  return (
-    <>
-      <HelmetChanger title="Apartment" />
-      <ScrollToTop />
-      <GoToTop />
-      <Navbar />
-      <div>
-        <Outlet />
-      </div>
-      <Footer5 />
-    </>
-  );
-};
+// const Main5 = () => {
+//   useEffect(() => {
+//     AOS.init();
+//     AOS.refresh();
+//   }, []);
+//   return (
+//     <>
+//       <HelmetChanger title="Apartment" />
+//       <ScrollToTop />
+//       <GoToTop />
+//       <Navbar />
+//       <div>
+//         <Outlet />
+//       </div>
+//       <Footer5 />
+//     </>
+//   );
+// };
 
-export default Main5;
+// export default Main5;

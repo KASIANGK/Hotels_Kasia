@@ -1,0 +1,11 @@
+.back-room-btn {
+    padding: 15px;
+    background: #c19d68 !important;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-items: right;
+}
+

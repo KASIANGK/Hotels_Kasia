@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'BackProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hostels_project',
+        'NAME': 'hos',
         'HOST': '127.0.0.1',
         'USER': 'root',
         'PASSWORD': '',

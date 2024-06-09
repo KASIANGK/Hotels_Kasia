@@ -1,0 +1,66 @@
+.login-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f4f6; /* Même couleur de fond que pour .register-all */
+  }
+  .login-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #6d593b;
+  }
+  
+  .login {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .login input[type="text"],
+  .login input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .login input[type="text"]:focus,
+  .login input[type="password"]:focus {
+    outline: none;
+    border-color: #c19c67;
+  }
+  
+  .login .login-btn {
+    width: 200px;
+    padding: 15px;
+    background-color: #c19c67;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login .login-btn:hover {
+    background-color: #a67e4c;
+  }
+  
+  .error {
+    color: red;
+}
+

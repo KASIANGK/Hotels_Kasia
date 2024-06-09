@@ -1,0 +1,110 @@
+.hostel-details {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5%;
+    margin-top: 10%;
+    display: flex;
+    flex-wrap: wrap;
+
+
+}
+
+.hostel-details img {
+    width: 200px;
+    border-radius: 7px;
+}
+.images-hd {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* style/BackHostels/BackHostelDetails.css */
+.hostel-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    
+  }
+  
+  .hostel-details h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .hostel-details img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .hostel-details p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .hostel-details h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .hostel-details .rooms-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .hostel-details .room-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
+  }
+  
+  .hostel-details .room-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .hostel-details .room-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .hostel-details .room-card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .hostel-details .services-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .hostel-details .service {
+    background-color: #f9f9f9;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .hostel-details .service:hover {
+    background-color: #c19c67;
+    color: white;
+  }
+  

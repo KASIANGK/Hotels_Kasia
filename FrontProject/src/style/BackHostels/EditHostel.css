@@ -1,0 +1,91 @@
+.edit-hostel-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #6d593b;
+    width: 100%;
+  }
+  
+  .edit-hostel {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 15%;
+    margin-bottom: 15%;
+    width: 70%;
+  }
+  
+  .edit-hostel h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .edit-hostel input[type="text"],
+  .edit-hostel input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .edit-hostel input[type="text"]:focus,
+  .edit-hostel input[type="file"]:focus {
+    outline: none;
+    border-color: #c19c67;
+  }
+  
+  .avatar-input {
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+  
+  .avatar-input input[type="text"] {
+    cursor: pointer;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .edit-hostel-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #6d593b;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-hostel-btn:hover {
+    background-color: #c19c67;
+  }
+  
+  .edit-hostel-images {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 3%;
+  }
+
+  .edit-hostel-images img {
+    width: 200px;
+    border-radius: 7px;
+
+  }

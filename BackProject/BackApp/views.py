@@ -34,15 +34,13 @@ def register(request):
     username = data.get('username')
     password = data.get('password')
     email = data.get('email')
-    avatar_id = data.get('avatar')  # Get the avatar ID from the request data
-    
+    avatar_id = data.get('avatar')  
     if User.objects.filter(username=username).exists():
         return JsonResponse({
             'status': 'already_exist',
             'message': 'This username is already used.'
         })
 
-    # Check if the avatar ID is valid
     avatar = AvatarUser.objects.get(id=avatar_id) if avatar_id else None
 
     new_user = User(
@@ -50,7 +48,7 @@ def register(request):
         username=username,
         password=make_password(password),
         email=email,
-        avatar=avatar  # Set the avatar field
+        avatar=avatar 
     )
     new_user.save()
 
@@ -86,7 +84,6 @@ def get_user(request):
         })
 
 
-
 @api_view(["POST"])
 def connexion(request):
     data = json.loads(request.body)
@@ -97,69 +94,33 @@ def connexion(request):
     if user is None:
         return JsonResponse({
             "status": "fail_connexion",
-            "message": "Informations are not valid"
-        })
+            "message": "Invalid username or password"
+        }, status=400)  
     else:
         login(request, user)
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
         
-        if user.role_id == 2: 
-            redirect_url = '/back-amin'
-        else:
-            redirect_url = '/back'
-        
         return JsonResponse({
             "status": "success",
             "message": "Connexion valid",
-            "access_token" : access_token,
-            "redirect_url": redirect_url
+            "access_token" : access_token
         })
-
-
-# VIEW CONNEXION
-
-# @api_view(["POST"])
-# def connexion(request):
-#     data = json.loads(request.body)
-#     username = data.get('username')
-#     password = data.get('password')
-#     print('try autenticate')
-#     user = authenticate(request, username=username, password=password)
-
-#     print('user is null ?')
-#     if user is None:
-#         print('yes')
-#         return JsonResponse({
-#             "status": "fail_connexion",
-#             "message": "informations is not valid"
-#         })
-#     else:
-#         print('no')
-#         login(request, user)
-#         refresh = RefreshToken.for_user(user)
-#         access_token = str(refresh.access_token)
-#         return JsonResponse({
-#             "status": "success",
-#             "message": "connecion valid",
-#             "access_token" : access_token,
-#             "refresh" : str(refresh)
-#         })
     
 
 
- # VIEW DECONNEXION
 
+ # VIEW DECONNEXION
 @api_view(["POST"])
 def deconnexion(request):
     logout(request)
-    redirect_url = '/'
-    return JsonResponse({
-            "status": "success",
-            "message": "logout success",
-            "redirect_url": redirect_url
+    return redirect('/')
+    # return JsonResponse({
+    #     "status": "success",
+    #     "message": "logout success"
+    # })
 
-        }) 
+
 
    
 
@@ -188,3 +149,260 @@ def create_avatar(request):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
+
+
+
+
+# VIEW HOSTELS
+@api_view(["GET"])
+def get_hostels(request):
+    hostels = Hostel.objects.all()
+    serializer = HostelSerializer(hostels, many=True)
+    return Response(serializer.data)
+
+@api_view(["GET"])
+def get_hostel_details(request, id):
+    try:
+        hostel = Hostel.objects.get(id=id)
+    except Hostel.DoesNotExist:
+        return Response({"error": "Hostel not found"}, status=404)
+    
+    serializer = HostelSerializer(hostel)
+    return Response(serializer.data)
+
+
+# def hostels_list(request):
+#     hostels = Hostel.objects.all()
+#     hostels_data = [{
+#         "id": hostel.id,
+#         "nom": hostel.nom,
+#         "image_url": request.build_absolute_uri(hostel.image.image.url),
+#     } for hostel in hostels]
+#     return JsonResponse(hostels_data, safe=False)
+
+def hostels_list(request):
+    hostels = Hostel.objects.all()
+    hostels_data = [{
+        "id": hostel.id,
+        "nom": hostel.nom,
+        "image_url": request.build_absolute_uri(hostel.images.first().image.url) if hostel.images.exists() else None,
+    } for hostel in hostels]
+    return JsonResponse(hostels_data, safe=False)
+
+
+
+@api_view(['GET', 'POST'])
+def hostel_image_list(request):
+    if request.method == 'GET':
+        images = HostelImage.objects.all()
+        serializer = HostelImageSerializer(images, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = HostelImageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def hostel_image_detail(request, pk):
+    try:
+        image = HostelImage.objects.get(pk=pk)
+    except HostelImage.DoesNotExist:
+        return Response(status=404)
+
+    if request.method == 'GET':
+        serializer = HostelImageSerializer(image)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = HostelImageSerializer(image, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+    elif request.method == 'DELETE':
+        image.delete()
+        return Response(status=204)
+    
+# @api_view(['POST'])
+# def create_hostel(request):
+#     hostel_serializer = HostelSerializer(data=request.data)
+#     if hostel_serializer.is_valid():
+#         hostel = hostel_serializer.save()
+#         image_data = request.data.get('images')  # Récupérer les données des images depuis la requête
+#         if image_data:
+#             # Créer et associer les images à l'hostel
+#             for image_item in image_data:
+#                 image_serializer = HostelImageSerializer(data=image_item)
+#                 if image_serializer.is_valid():
+#                     image_serializer.save(hostel=hostel)
+#                 else:
+#                     return Response(image_serializer.errors, status=400)
+#         return Response(hostel_serializer.data, status=201)
+#     return Response(hostel_serializer.errors, status=400)
+    
+@api_view(['POST'])
+def create_hostel(request):
+    # Récupérer les données de la requête
+    hostel_data = request.data.copy()  # Copier les données de la requête
+
+    # Retirer les champs facultatifs s'ils sont vides dans la requête
+    if 'chambres' in hostel_data and not hostel_data['chambres']:
+        hostel_data.pop('chambres')
+    if 'service' in hostel_data and not hostel_data['service']:
+        hostel_data.pop('service')
+
+    # Définir les champs facultatifs sur None s'ils ne sont pas présents dans la requête
+    for field in ['rating', 'nbre_chambres']:
+        if field not in hostel_data:
+            hostel_data[field] = None
+
+    # Créer une instance du sérialiseur avec les données modifiées
+    hostel_serializer = HostelSerializer(data=hostel_data)
+
+    # Valider et sauvegarder le sérialiseur
+    if hostel_serializer.is_valid():
+        hostel = hostel_serializer.save()
+        # Traitement supplémentaire pour les images...
+        return Response(hostel_serializer.data, status=201)
+    return Response(hostel_serializer.errors, status=400)
+
+
+
+@api_view(['PUT'])
+def update_hostel(request, pk):  # Renommer le paramètre en 'pk'
+    try:
+        hostel = Hostel.objects.get(id=pk)  # Utiliser 'pk' pour récupérer l'objet Hostel
+    except Hostel.DoesNotExist:
+        return Response({"error": "Hostel not found"}, status=404)
+
+    if request.method == 'PUT':
+        serializer = HostelSerializer(hostel, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+
+
+    
+
+
+# Vue pour obtenir les détails d'un HeroSlide spécifique
+@api_view(['GET'])
+def hero_slide_detail(request, pk):
+    try:
+        hero_slide = HeroSlide.objects.get(pk=pk)
+    except HeroSlide.DoesNotExist:
+        return Response({'error': 'Hero slide not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = HeroSlideSerializer(hero_slide)
+    return Response(serializer.data)
+
+# Vue pour obtenir tous les HeroSlides
+@api_view(['GET'])
+def get_hero_slides(request):
+    hero_slides = HeroSlide.objects.all()
+    serializer = HeroSlideSerializer(hero_slides, many=True)
+    return Response(serializer.data)
+
+# Vue pour créer un nouveau HeroSlide
+@api_view(['POST'])
+def create_hero_slide(request):
+    serializer = HeroSlideSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Vue pour mettre à jour un HeroSlide spécifique
+@api_view(['PUT'])
+def update_hero_slide(request, pk):
+    try:
+        hero_slide = HeroSlide.objects.get(pk=pk)
+    except HeroSlide.DoesNotExist:
+        return Response({'error': 'Hero slide not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = HeroSlideSerializer(hero_slide, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Vue pour supprimer un HeroSlide spécifique
+@api_view(['DELETE'])
+def delete_hero_slide(request, pk):
+    try:
+        hero_slide = HeroSlide.objects.get(pk=pk)
+    except HeroSlide.DoesNotExist:
+        return Response({'error': 'Hero slide not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    hero_slide.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+# @api_view(['GET'])
+# def get_hero_slides(request):
+#     if request.method == 'GET':
+#         hero_slides = HeroSlide.objects.all()
+#         serializer = HeroSlideSerializer(hero_slides, many=True)
+#         return Response(serializer.data)
+    
+
+# @api_view(['POST'])
+# def create_hero_slide(request):
+#     if request.method == 'POST':
+#         serializer = HeroSlideSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=201)
+#         return Response(serializer.errors, status=400)
+
+
+
+@api_view(['GET'])
+def get_section_manager(request):
+    section_manager = SectionManager.objects.all()
+    serializer = SectionManagerSerializer(section_manager, many=True)
+    return Response(serializer.data)
+
+
+
+@api_view(['GET'])
+def get_testimonials(request):
+    testimonials = Testimonial.objects.all()
+    serializer = TestimonialSerializer(testimonials, many=True)
+    return Response(serializer.data)
+
+
+
+
+@api_view(['GET'])
+def get_room_section(request):
+    try:
+        room_sections = RoomSection.objects.all()
+    except RoomSection.DoesNotExist:
+        return Response({'error': 'Room sections not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = RoomSectionSerializer(room_sections, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_chambres(request):
+    try:
+        chambres = Chambre.objects.all()
+    except Chambre.DoesNotExist:
+        return Response({'error': 'Chambres not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ChambreSerializer(chambres, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_chambre_images(request):
+    try:
+        images = ChambreImage.objects.all()
+    except ChambreImage.DoesNotExist:
+        return Response({'error': 'Images not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ChambreImageSerializer(images, many=True)
+    return Response(serializer.data)
